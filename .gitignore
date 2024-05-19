@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# AWS Config
+./**/ip-config.json
+
 # Distribution / packaging
 .Python
 build/

@@ -1,0 +1,22 @@
+{
+    "Version": "2023-05-19",
+    "Statement": [{
+      "Sid": "Allow only based on source IP",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:GetObject",
+      "Resource": [
+        "arn:aws:s3:::data-docs.dadosfera",
+        "arn:aws:s3:::data-docs.dadosfera/*"
+      ],
+      "Condition": {
+        "IpAddress": {
+          "aws:SourceIp": [
+            "172.21.143.255/20",
+            "fe80::215:5dff:fe25:2aa7/64"
+          ]
+        }
+      }
+    }
+    ]
+  }
