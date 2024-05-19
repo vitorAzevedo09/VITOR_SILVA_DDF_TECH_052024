@@ -1,19 +1,19 @@
 # VITOR_SILVA_DDF_TECH_052024
 
-#  Online Retail II Dataset
+## Online Retail II Dataset
 
-## Dataset Overview
+### Dataset Overview
 
-### Source
+#### Source
 The Online Retail II dataset is publicly available and can be obtained from the UCI Machine Learning Repository or other similar repositories.
 
-### Description
+#### Description
 - **Period Covered:** December 1, 2009, to December 9, 2011
 - **Company Type:** UK-based online retail specializing in unique gift-ware
 - **Customer Base:** Includes both retail customers and wholesalers
 - **Number of Records:** Approximately 500,000 transactions
 
-### Key Columns
+#### Key Columns
 - **InvoiceNo:** Unique identifier for each transaction
 - **StockCode:** Unique product code
 - **Description:** Product description
@@ -23,43 +23,44 @@ The Online Retail II dataset is publicly available and can be obtained from the 
 - **CustomerID:** Unique identifier for each customer
 - **Country:** Country of the customer
 
-
 ## Integrating and Loading Data from AWS S3 to Dadosfera
 
-To integrate and load the Online Retail II dataset from AWS S3 into Dadosfera, i followed these steps:
+To integrate and load the Online Retail II dataset from AWS S3 into Dadosfera, I followed these steps:
 
-### Step 1: Prepared the Dataset conveting from xlsx to csv using script.
+### Step 1: Prepare the Dataset
 
-### Step 2: Upload Your Dataset to AWS S3
+Converted the dataset from XLSX to CSV format using a script.
 
-1. **Logeed In to AWS Management Console:** Accessed the AWS Management Console and logged in with my credentials.
-2. **Created an S3 Bucket:** Create a new S3 bucket.
+### Step 2: Upload the Dataset to AWS S3
+
+1. **Logged In to AWS Management Console:** Accessed the AWS Management Console and logged in with my credentials.
+2. **Created an S3 Bucket:** Created a new S3 bucket.
 3. **Uploaded the CSV File:**
-   - Selected the bucket where i want to upload the data.
-   - Click "Upload" and select `online_retail_II.csv` from my local storage.
+   - Selected the bucket where I wanted to upload the data.
+   - Clicked "Upload" and selected `online_retail_II.csv` from my local storage.
    - Followed the prompts to upload the file to the S3 bucket.
 
 ### Step 3: Configure Dadosfera to Connect to AWS S3
 
 1. **Logged In to Dadosfera:** Accessed my Dadosfera account and logged in.
-2. **Navigate to Data Ingestion Module:** Find and open the data ingestion module on the Dadosfera platform.
-3. **Create a New Dataset Project:**
-   - Go to the data ingestion section.
-   - Click on "Create New Dataset" or a similar option to start a new data project.
+2. **Navigated to Data Ingestion Module:** Found and opened the data ingestion module on the Dadosfera platform.
+3. **Created a New Dataset Project:**
+   - Went to the data ingestion section.
+   - Clicked on "Create New Dataset" or a similar option to start a new data project.
 
 ### Step 4: Connect to AWS S3
 
 1. **Add S3 Connection:**
-   - In the new dataset project, select the option to add a data source.
-   - Choose AWS S3 as the data source.
+   - In the new dataset project, selected the option to add a data source.
+   - Chose AWS S3 as the data source.
 2. **Configure S3 Connection Details:**
-   - Enter the necessary connection details, including your AWS Access Key, Secret Key, and the S3 bucket name where your dataset is stored.
-   - Specify the path to the CSV file (e.g., `online_retail_II.csv`).
+   - Entered the necessary connection details, including my AWS Access Key, Secret Key, and the S3 bucket name where the dataset is stored.
+   - Specified the path to the CSV file (e.g., `online_retail_II.csv`).
 
 ### Step 5: Load the Data into Dadosfera
 
 1. **Schema Definition:**
-   - Define the schema based on the dataset columns:
+   - Defined the schema based on the dataset columns:
      - `InvoiceNo` (String)
      - `StockCode` (String)
      - `Description` (String)
@@ -70,45 +71,45 @@ To integrate and load the Online Retail II dataset from AWS S3 into Dadosfera, i
      - `Country` (String)
 
 2. **Data Validation:**
-   - Validate the dataset to ensure there are no errors or missing values.
-   - Dadosfera might provide tools to automatically validate data types and formats.
+   - Validated the dataset to ensure there were no errors or missing values.
+   - Utilized Dadosfera's tools to automatically validate data types and formats.
 
 3. **Initiate Data Load:**
-   - Once the schema is defined and the data is validated, proceed to load the data from AWS S3 into Dadosfera.
-   - Monitor the loading process to ensure all records are successfully ingested.
+   - Once the schema was defined and the data was validated, proceeded to load the data from AWS S3 into Dadosfera.
+   - Monitored the loading process to ensure all records were successfully ingested.
 
 4. **Verify the Data Load:**
-   - After the data load is complete, verify the number of records loaded into Dadosfera.
-   - Ensure that the dataset contains at least 100,000 records.
+   - After the data load was complete, verified the number of records loaded into Dadosfera.
+   - Ensured that the dataset contained at least 100,000 records.
 
 ## Data Loading and Cataloging
 
 ### Data Cataloging
 
-We use a script called `to_catalog_dataset.py` to send the most relevant dataset information via the Dadosfera API. This script automates the data cataloging process following best practices for data dictionary management.
+I used a script called `to_catalog_dataset.py` to send the most relevant dataset information via the Dadosfera API. This script automates the data cataloging process following best practices for data dictionary management.
 
 #### Structure of the Script `to_catalog_dataset.py`
 
 1. **Importing Libraries:**
-   - Imports the `requests` library to make HTTP requests.
+   - Imported the `requests` library to make HTTP requests.
 
 2. **API Credentials Configuration:**
-   - Sets the API credentials (`api_key` and `db_id`), which are passed as command-line arguments.
+   - Set the API credentials (`api_key` and `db_id`), which are passed as command-line arguments.
 
 3. **Defining Dataset Information:**
-   - Contains all relevant information, including name, description, and tags.
+   - Contained all relevant information, including name, description, and tags.
 
 4. **Function to Catalog the Dataset:**
-   - Defines a function that sends a POST request to the Dadosfera API with the dataset information.
+   - Defined a function that sends a POST request to the Dadosfera API with the dataset information.
 
 5. **Script Execution:**
-   - Executes the function to catalog the dataset.
+   - Executed the function to catalog the dataset.
 
 ## Data Quality Report using Great Expectations
 
 ### Data Quality Check Script with Great Expectations and AWS S3 Integration
 
-We've developed a custom script called `to_check_data_quality` that directly connects to our AWS S3 bucket using Great Expectations. This script streamlines the process of validating our data quality against predefined expectations. Here's an overview of how it works:
+I developed a custom script called `to_check_data_quality` that directly connects to our AWS S3 bucket using Great Expectations. This script streamlines the process of validating our data quality against predefined expectations. Here's an overview of how it works:
 
 #### 1. Establishing Connection with AWS S3 Bucket
 
@@ -126,5 +127,6 @@ The script executes data quality checks using Great Expectations directly on the
 
 After running the data quality checks, the script generates comprehensive validation reports. These reports provide insights into any discrepancies or issues found during the validation process, enabling us to identify and address data quality concerns promptly.
 
+### Addressing Missing Values
 
-
+Given that there are approximately 2,928 unique descriptions in the transaction dataset, with a total of 4,681 distinct values observed across more than 500,000 instances, it is advisable to address any null values in a strategic manner. One effective practice involves leveraging grouped features and algorithms such as KDD to impute synthetic data for missing values. This approach allows for the generation of meaningful data points based on patterns observed within specific groups or clusters, thereby enhancing the completeness and integrity of the dataset.
