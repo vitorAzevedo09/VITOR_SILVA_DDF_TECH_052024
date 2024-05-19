@@ -103,3 +103,28 @@ We use a script called `to_catalog_dataset.py` to send the most relevant dataset
 
 5. **Script Execution:**
    - Executes the function to catalog the dataset.
+
+## Data Quality Report using Great Expectations
+
+### Data Quality Check Script with Great Expectations and AWS S3 Integration
+
+We've developed a custom script called `to_check_data_quality` that directly connects to our AWS S3 bucket using Great Expectations. This script streamlines the process of validating our data quality against predefined expectations. Here's an overview of how it works:
+
+#### 1. Establishing Connection with AWS S3 Bucket
+
+The script initiates a connection with our AWS S3 bucket, allowing seamless access to the data stored within. This connection is essential for retrieving the data that we want to assess for quality.
+
+#### 2. Configuring Great Expectations
+
+Once connected to the S3 bucket, the script configures Great Expectations to define expectations and validate our data. We specify the expectations that our data must meet, such as checking for null values, data types, or value ranges.
+
+#### 3. Running Data Quality Checks
+
+The script executes data quality checks using Great Expectations directly on the data stored in the S3 bucket. It validates the data against the defined expectations to ensure its integrity and reliability.
+
+#### 4. Generating Validation Reports
+
+After running the data quality checks, the script generates comprehensive validation reports. These reports provide insights into any discrepancies or issues found during the validation process, enabling us to identify and address data quality concerns promptly.
+
+
+
