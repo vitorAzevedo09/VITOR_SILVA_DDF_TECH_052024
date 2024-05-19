@@ -80,3 +80,26 @@ To integrate and load the Online Retail II dataset from AWS S3 into Dadosfera, i
 4. **Verify the Data Load:**
    - After the data load is complete, verify the number of records loaded into Dadosfera.
    - Ensure that the dataset contains at least 100,000 records.
+
+## Data Loading and Cataloging
+
+### Data Cataloging
+
+We use a script called `to_catalog_dataset.py` to send the most relevant dataset information via the Dadosfera API. This script automates the data cataloging process following best practices for data dictionary management.
+
+#### Structure of the Script `to_catalog_dataset.py`
+
+1. **Importing Libraries:**
+   - Imports the `requests` library to make HTTP requests.
+
+2. **API Credentials Configuration:**
+   - Sets the API credentials (`api_key` and `db_id`), which are passed as command-line arguments.
+
+3. **Defining Dataset Information:**
+   - Contains all relevant information, including name, description, and tags.
+
+4. **Function to Catalog the Dataset:**
+   - Defines a function that sends a POST request to the Dadosfera API with the dataset information.
+
+5. **Script Execution:**
+   - Executes the function to catalog the dataset.
