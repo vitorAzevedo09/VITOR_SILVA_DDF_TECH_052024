@@ -11,6 +11,10 @@ stores:
         aws_access_key_id: ${AWS_ACCESS_KEY_ID} # Uses the AWS_ACCESS_KEY_ID environment variable to get aws_access_key_id.
         aws_secret_access_key: ${AWS_ACCESS_KEY_ID}
         aws_session_token: ${AWS_ACCESS_KEY_ID}
+
+expectations_store_name: expectations_S3_store
+
+stores:
   validations_S3_store:
     class_name: ValidationsStore
     store_backend:
@@ -25,6 +29,21 @@ stores:
     aws_secret_access_key: ${AWS_ACCESS_KEY_ID}
     aws_session_token: ${AWS_ACCESS_KEY_ID}
 
-
-expectations_store_name: expectations_S3_store
 validations_store_name: validations_S3_store
+      
+data_docs_sites:
+  local_site:
+    class_name: SiteBuilder
+    show_how_to_buttons: true
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: uncommitted/data_docs/local_site/
+    site_index_builder:
+      class_name: DefaultSiteIndexBuilder
+  S3_site:  # this is a user-selected name - you may select your own
+    class_name: SiteBuilder
+    store_backend:
+      class_name: TupleS3StoreBackend
+      bucket: 'ddftech052024'
+    site_index_builder:
+      class_name: DefaultSiteIndexBuilder
