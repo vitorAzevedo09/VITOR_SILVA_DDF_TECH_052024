@@ -317,3 +317,50 @@ After running the data quality checks, the script generates comprehensive valida
 ### Addressing Missing Values
 
 Given that there are approximately 2,928 unique descriptions in the transaction dataset, with a total of 4,681 distinct values observed across more than 500,000 instances, it is advisable to address any null values in a strategic manner. One effective practice involves leveraging grouped features and algorithms such as KDD to impute synthetic data for missing values. This approach allows for the generation of meaningful data points based on patterns observed within specific groups or clusters, thereby enhancing the completeness and integrity of the dataset.
+
+### Gemini Feature Extraction
+
+The **Gemini feature extraction** process leverages Google's Generative AI to automatically derive meaningful features from product descriptions. This enhances the dataset with additional, structured information, which can be particularly useful for downstream tasks like classification, clustering, or recommendation systems. Below is an overview of the process and a sample implementation.
+
+#### Prerequisites
+- Ensure you have the Gemini API key set in your environment variables as `GEMINI_API_KEY`.
+- Install necessary packages: `google-generativeai`, `pandas`.
+
+#### Steps to Execute the Script
+
+1. **Set Up Environment Variables:**
+   Ensure your Gemini API key is stored in an environment variable named `GEMINI_API_KEY`.
+   ```bash
+   export GEMINI_API_KEY=your_gemini_api_key_here
+   ```
+
+2. **Install Required Libraries:**
+   Make sure you have `google-generativeai` and `pandas` installed.
+   ```bash
+   pip install google-generativeai pandas # or you can install all the packages in ./scripts/requirements.txt
+   ```
+
+3. **Run the Script:**
+   Execute the script to perform feature extraction and save the results.
+   ```bash
+   python ./scripts/data_process/extract_features.py
+   ```
+
+#### Detailed Explanation
+
+1. **Configuration:**
+   The script configures the Gemini API using the API key from the environment variables.
+
+2. **Feature Extraction Function:**
+   The `extract_features` function sends a product description to the Gemini model and processes the response to extract features in JSON format.
+
+3. **Dataset Loading:**
+   The script loads the `Online Retail II` dataset from a JSON file.
+
+4. **Applying Feature Extraction:**
+   The script applies the `extract_features` function to each product description in the dataset, adding a new column `Features` with the extracted information.
+
+5. **Saving the Enhanced Dataset:**
+   Finally, the enhanced dataset, now including the extracted features, is saved to a new JSON file.
+
+By incorporating Gemini's feature extraction, we can enrich the dataset with structured and detailed product attributes, enabling more advanced data analysis and machine learning applications.

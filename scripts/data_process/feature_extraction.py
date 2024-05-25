@@ -16,5 +16,4 @@ dataset = pd.read_json("../../data/online_retail_II.json")
 
 dataset["Features"] = dataset["Description"].apply(extract_features)
 
-print(dataset)
-
+dataset.to_json("../../data/online_retail_II_features.json")
